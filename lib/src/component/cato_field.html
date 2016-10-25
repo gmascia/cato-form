@@ -1,12 +1,10 @@
 <div class="field">
   <label htmlFor="{{fieldId}}">{{label}}</label>
-
   <textarea
       *ngIf="isTextArea"
       id="{{fieldId}}"
       [(ngModel)]="value"
       [class.not-valid]="isNotValid">{{placeholder}}</textarea>
-
   <input
       *ngIf="!isTextArea"
       id="{{fieldId}}"

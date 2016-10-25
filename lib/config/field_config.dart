@@ -1,4 +1,4 @@
-import 'package:cato_form/field_type.dart';
+import '../src/model/field_type.dart';
 
 class FieldConfig {
   String id;

@@ -1,19 +1,20 @@
-import 'package:angular2/platform/browser.dart';
-import 'package:angular2/angular2.dart';
-import 'package:cato_form/form_component.dart';
-import 'package:cato_form/field_config.dart';
 import 'dart:html';
 import 'dart:async';
+
+import 'package:angular2/angular2.dart';
+import 'package:angular2/platform/browser.dart';
+
+import 'package:cato_form/component/cato_form.dart';
+import 'package:cato_form/config/field_config.dart';
 
 main() => bootstrap(App);
 
 @Component(
     selector: 'app',
-    styleUrls: const ['app.css'],
     templateUrl: 'app.html',
-    directives: const [FormComponent])
+    directives: const [CatoFormComponent])
 class App {
-  static List<FieldConfig> _fields = <FieldConfig>[
+  static final List<FieldConfig> _fields = <FieldConfig>[
     FieldConfig.textInputRequired('name', 'Nome'),
     FieldConfig.textInputRequired('last_name', 'Cognome'),
     FieldConfig.textInputRequired('company', 'Azienda'),
@@ -30,7 +31,7 @@ class App {
   List<FieldConfig> get fields => _fields;
 
   Future submitCallback(Map<String, String> formData) {
-    //do smth with form data :)
+    // Do something with form data.
     window.console.log(formData.toString());
   }
 }

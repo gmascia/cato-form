@@ -1,17 +1,16 @@
 import 'package:angular2/common.dart';
 import 'package:angular2/core.dart' hide Optional;
-
-import 'package:cato_form/field_config.dart';
-import 'package:cato_form/field_type.dart';
+import 'package:cato_form/config/field_config.dart';
+import '../model/field_type.dart';
 
 @Component(
     selector: 'cato-form-field',
-    templateUrl: 'form_field_component.html',
-    styleUrls: const ['form_field_component.css'],
+    templateUrl: 'cato_field.html',
+    styleUrls: const ['cato_field.css'],
     directives: const [CORE_DIRECTIVES],
     providers: const [FieldType]
 )
-class FormFieldComponent {
+class CatoFieldComponent {
   FieldConfig _field;
   String _value;
   bool _valid;
@@ -46,7 +45,6 @@ class FormFieldComponent {
     switch(type) {
       case FieldType.DATE:
         return 'date';
-        break;
       default:
         return 'text';
     }
