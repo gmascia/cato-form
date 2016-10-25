@@ -1,2 +1,2 @@
-# cato-library
-Library of Angular2Dart components and services
+# cato-form
+Angular2Dart form generator
