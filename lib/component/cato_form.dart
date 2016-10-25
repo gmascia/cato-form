@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:angular2/common.dart';
 import 'package:angular2/core.dart';
 import 'package:collection/equality.dart';
-
+import 'package:cato_button/button.dart';
 import 'package:cato_form/config/field_config.dart';
 
 import '../src/component/cato_field.dart';
@@ -20,6 +20,7 @@ typedef dynamic FormSubmitCallback(Map<String, String> formData);
       CORE_DIRECTIVES,
       FORM_DIRECTIVES,
       CatoFieldComponent,
+      CatoButtonComponent
     ],
     providers: const [
       FieldConfig,

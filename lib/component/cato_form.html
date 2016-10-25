@@ -18,10 +18,9 @@
           (onValueChanged)="onFieldValueChanged(field.id, $event)">
       </cato-form-field>
     </div>
-    <button (click)="submit()">{{strings['submit']}}</button>
-    <!--button
+    <cato-button
         (onButtonClicked)="submit()"
-        label="Invia">
-    </button-->
+        label="{{strings['submit']}}">
+    </cato-button>
   </form>
 </div>

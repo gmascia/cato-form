@@ -8,6 +8,8 @@ dependencies:
   browser: ^0.10.0
   dart_to_js_script_rewriter: ^1.0.1
   quiver: '>=0.23.0<0.24.0'
+  cato_button:
+    git: git://github.com/gmascia/cato-button.git
 transformers:
 - angular2:
     platform_directives:
