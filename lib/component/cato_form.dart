@@ -5,6 +5,7 @@ import 'package:angular2/core.dart';
 import 'package:collection/equality.dart';
 import 'package:cato_button/button.dart';
 import 'package:cato_form/config/field_config.dart';
+import 'package:cato_form/config/field_group.dart';
 
 import '../src/component/cato_field.dart';
 import '../src/model/form_model.dart';
@@ -27,7 +28,7 @@ typedef dynamic FormSubmitCallback(Map<String, String> formData);
       FormModel
     ])
 class CatoFormComponent {
-  List<FieldConfig> _fields;
+  List<FieldGroup> _fieldGroups;
   FormModel _formModel;
   bool isFormSubmitted = false;
   Map<String, String> formSubmitResponse;
@@ -45,19 +46,19 @@ class CatoFormComponent {
   @Input('submit-callback')
   FormSubmitCallback submitCallback;
 
-  List<FieldConfig> get fields => _fields;
+  List<FieldGroup> get fieldGroups => _fieldGroups;
 
-  @Input()
-  set fields(List<FieldConfig> value) {
+  @Input('field-groups')
+  set fieldGroups(List<FieldGroup> value) {
     Function eq = const ListEquality().equals;
-    if (eq(_fields, value)) return;
-    _fields = value;
+    if (eq(_fieldGroups, value)) return;
+    _fieldGroups = value;
     _initModel();
   }
 
   void _initModel() {
     if (_formModel == null) {
-      _formModel = new FormModel(_fields);
+      _formModel = new FormModel(_fieldGroups);
     }
   }
 

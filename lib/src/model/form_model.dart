@@ -1,29 +1,40 @@
 import 'package:quiver/strings.dart';
+
 import 'package:cato_form/config/field_config.dart';
+import 'package:cato_form/config/field_group.dart';
 
 class FormModel {
-  static const num _maxFieldValueLength = 50;
+  static const num _maxFieldValueLength = 200;
 
-  final List<FieldConfig> _fields;
+  final List<FieldGroup> _fieldGroups;
   final Map<String, String> _labels = new Map<String, String>();
   final Set<String> notValidFields = new Set<String>();
   final Map<String, String> _formData = new Map<String, String>();
 
   bool hasLengthIssue = false;
 
-  FormModel(this._fields) {
-    _fields.forEach((FieldConfig fieldConfig) {
-      _labels[fieldConfig.id] = fieldConfig.label;
-    });
+  FormModel(this._fieldGroups) {
+    _fieldGroups.forEach((FieldGroup fieldGroup) =>
+        fieldGroup.fields.forEach(
+            (FieldConfig fieldConfig) =>
+                _labels[fieldConfig.id] = fieldConfig.label));
   }
 
-  List<FieldConfig> get fields => _fields;
+  List<FieldGroup> get fieldGroups => _fieldGroups;
 
   Map<String, String> get labels => _labels;
 
-  List<String> get _requiredFields => _fields
-      .where((FieldConfig field) => field.required)
-      .map((FieldConfig field) => field.id);
+  List<String> get _requiredFields {
+    final List<String> requiredFields = <String>[];
+    for (final FieldGroup fieldGroup in _fieldGroups) {
+      for (final FieldConfig fieldConfig in fieldGroup.fields) {
+        if (fieldConfig.required) {
+          requiredFields.add(fieldConfig.id);
+        }
+      }
+    }
+    return requiredFields;
+  }
 
   //TODO: make an immutable copy.
   Map<String, String> get formData => _formData;

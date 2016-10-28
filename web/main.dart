@@ -6,6 +6,7 @@ import 'package:angular2/platform/browser.dart';
 
 import 'package:cato_form/component/cato_form.dart';
 import 'package:cato_form/config/field_config.dart';
+import 'package:cato_form/config/field_group.dart';
 
 main() => bootstrap(App);
 
@@ -14,21 +15,24 @@ main() => bootstrap(App);
     templateUrl: 'app.html',
     directives: const [CatoFormComponent])
 class App {
-  static final List<FieldConfig> _fields = <FieldConfig>[
-    FieldConfig.textInputRequired('name', 'Nome'),
-    FieldConfig.textInputRequired('last_name', 'Cognome'),
-    FieldConfig.textInputRequired('company', 'Azienda'),
-    FieldConfig.textInputRequired('phone', 'Telefono'),
-    FieldConfig.textInputRequired('email', 'Email'),
-    FieldConfig.textInputRequired('language', 'Lingua'),
-    FieldConfig.textInputRequired('city', 'Citta'),
-    FieldConfig.textInput('country', 'Stato'),
-    FieldConfig.dateInput('date_from', 'Da', false),
-    FieldConfig.dateInput('date_to', 'A', false),
-    FieldConfig.textAreaRequired('notes', 'Note'),
-  ];
+  FieldGroup _fieldGroup1;
+  FieldGroup _fieldGroup2;
 
-  List<FieldConfig> get fields => _fields;
+  App() {
+    final List<FieldConfig> _fields1 = <FieldConfig>[
+      FieldConfig.requiredTextField('name', 'Nome'),
+      FieldConfig.optionalTextField('last_name', 'Cognome'),
+    ];
+    _fieldGroup1 = new FieldGroup('dati personali', _fields1);
+
+    final List<FieldConfig> _fields2 = <FieldConfig>[
+      FieldConfig.requiredTextField('request', 'Richiesta'),
+      FieldConfig.optionalDateInput('date', 'Data'),
+    ];
+    _fieldGroup2 = new FieldGroup('richiesta', _fields2);
+  }
+
+  List<FieldGroup> get fieldGroups => <FieldGroup>[_fieldGroup1, _fieldGroup2];
 
   Future submitCallback(Map<String, String> formData) {
     // Do something with form data.

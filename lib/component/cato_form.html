@@ -8,16 +8,19 @@
   </div>
 
   <form class="form" *ngIf="!isFormSubmitted">
-    <div class="fields">
-      <cato-form-field
-          *ngFor="let field of fields"
-          [field]="field"
-          [valid]="isFieldValid(field.id)"
-          [strings]="strings"
-          (onEnterKeyPressed)="submit()"
-          (onValueChanged)="onFieldValueChanged(field.id, $event)">
-      </cato-form-field>
-    </div>
+    <fieldset *ngFor="let fieldGroup of fieldGroups">
+      <legend>{{fieldGroup.label}}</legend>
+      <div class="fields">
+        <cato-form-field
+            *ngFor="let field of fieldGroup.fields"
+            [field]="field"
+            [valid]="isFieldValid(field.id)"
+            [strings]="strings"
+            (onEnterKeyPressed)="submit()"
+            (onValueChanged)="onFieldValueChanged(field.id, $event)">
+        </cato-form-field>
+      </div>
+    </fieldset>
     <cato-button
         (onButtonClicked)="submit()"
         label="{{strings['submit']}}">
