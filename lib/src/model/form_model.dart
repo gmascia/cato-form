@@ -14,10 +14,9 @@ class FormModel {
   bool hasLengthIssue = false;
 
   FormModel(this._fieldGroups) {
-    _fieldGroups.forEach((FieldGroup fieldGroup) =>
-        fieldGroup.fields.forEach(
-            (FieldConfig fieldConfig) =>
-                _labels[fieldConfig.id] = fieldConfig.label));
+    _fieldGroups.forEach((FieldGroup fieldGroup) => fieldGroup.fields.forEach(
+        (FieldConfig fieldConfig) =>
+            _labels[fieldConfig.id] = fieldConfig.label));
   }
 
   List<FieldGroup> get fieldGroups => _fieldGroups;
