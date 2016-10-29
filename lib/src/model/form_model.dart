@@ -10,6 +10,7 @@ class FormModel {
   final Map<String, String> _labels = new Map<String, String>();
   final Set<String> notValidFields = new Set<String>();
   final Map<String, String> _formData = new Map<String, String>();
+  List<String> _requiredFields;
 
   bool hasLengthIssue = false;
 
@@ -17,13 +18,16 @@ class FormModel {
     _fieldGroups.forEach((FieldGroup fieldGroup) => fieldGroup.fields.forEach(
         (FieldConfig fieldConfig) =>
             _labels[fieldConfig.id] = fieldConfig.label));
+    _setRequiredFields();
   }
 
   List<FieldGroup> get fieldGroups => _fieldGroups;
 
   Map<String, String> get labels => _labels;
 
-  List<String> get _requiredFields {
+  List<String> get requiredFields => _requiredFields;
+
+  void _setRequiredFields() {
     final List<String> requiredFields = <String>[];
     for (final FieldGroup fieldGroup in _fieldGroups) {
       for (final FieldConfig fieldConfig in fieldGroup.fields) {
@@ -32,7 +36,7 @@ class FormModel {
         }
       }
     }
-    return requiredFields;
+    _requiredFields = requiredFields;
   }
 
   //TODO: make an immutable copy.

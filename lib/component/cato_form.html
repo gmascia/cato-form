@@ -17,7 +17,7 @@
             [valid]="isFieldValid(field.id)"
             [strings]="strings"
             (onEnterKeyPressed)="submit()">
-            <!-- (onValueChanged)="onFieldValueChanged(field.id, $event)" -->
+            (onValueChanged)="onFieldValueChanged(field.id, $event)">
         </cato-form-field>
       </div>
     </fieldset>
