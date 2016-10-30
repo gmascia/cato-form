@@ -11,9 +11,9 @@ fieldset {
 }
 
 legend {
-  color: #555;
-  font-family: sans-serif;
-  font-size: 14px;
+  color: #444;
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
   font-variant: small-caps;
   padding: 0;
 }
@@ -40,4 +40,3 @@ legend {
   margin: 0;
   padding: 0;
 }
-
